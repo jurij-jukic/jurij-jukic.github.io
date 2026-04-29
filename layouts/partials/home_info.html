@@ -1,0 +1,35 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info">
+    <div class="home-info-header">
+        <header class="entry-header">
+            <h1>{{ .Title | markdownify }}</h1>
+        </header>
+        {{- with .Image }}
+        <div class="home-info-image-frame">
+            <img
+                class="home-info-image home-info-image-dark"
+                src="{{ . | relURL }}"
+                alt="{{ site.Params.author | default site.Params.homeInfoParams.Title }}"
+                style="--image-offset-x: {{ site.Params.homeInfoParams.ImageOffsetX | default "0%" }}; --image-offset-y: {{ site.Params.homeInfoParams.ImageOffsetY | default "0%" }}; --image-scale: {{ site.Params.homeInfoParams.ImageScale | default "1" }};"
+            >
+            {{- with site.Params.homeInfoParams.LightImage }}
+            <img
+                class="home-info-image home-info-image-light"
+                src="{{ . | relURL }}"
+                alt="{{ site.Params.author | default site.Params.homeInfoParams.Title }}"
+                style="--image-offset-x: {{ site.Params.homeInfoParams.ImageOffsetX | default "0%" }}; --image-offset-y: {{ site.Params.homeInfoParams.ImageOffsetY | default "0%" }}; --image-scale: {{ site.Params.homeInfoParams.ImageScale | default "1" }};"
+            >
+            {{- end }}
+        </div>
+        {{- end }}
+    </div>
+    {{- with site.Home.Content }}
+    <div class="entry-content md-content">
+        {{ . }}
+    </div>
+    {{- end }}
+    <footer class="entry-footer">
+        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+    </footer>
+</article>
+{{- end -}}

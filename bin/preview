@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+set -eu
+
+if ! command -v hugo >/dev/null 2>&1; then
+  cat <<'EOF'
+Hugo is not installed.
+
+Install it with:
+  brew install hugo
+
+Then preview this site with:
+  ./bin/preview
+EOF
+  exit 1
+fi
+
+PORT="${PORT:-1313}"
+
+if command -v lsof >/dev/null 2>&1 && lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "Port $PORT is already in use."
+  echo
+  lsof -nP -iTCP:"$PORT" -sTCP:LISTEN
+  echo
+  echo "Stop that process, or use another port:"
+  echo "  PORT=1314 ./bin/preview"
+  exit 1
+fi
+
+hugo server \
+  --buildDrafts \
+  --disableFastRender \
+  --bind 127.0.0.1 \
+  --port "$PORT" \
+  --baseURL "http://127.0.0.1:$PORT/" \
+  --appendPort=false
