@@ -1,7 +1,9 @@
 {{- define "main" }}
 
-{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages := where site.Pages "Kind" "page" }}
+{{- $pages = where $pages "Section" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+{{- $pages = sort $pages "Date" "desc" }}
 {{- $paginator := .Paginate $pages }}
 
 {{- if and site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
@@ -10,6 +12,10 @@
 
 {{- range $page := $paginator.Pages }}
 <article class="post-entry">
+    {{- $entryURL := .RelPermalink -}}
+    {{- with .Params.externalURL -}}
+    {{- $entryURL = . -}}
+    {{- end -}}
     {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
     {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
     <header class="entry-header">
@@ -31,10 +37,14 @@
     {{- end }}
     {{- if not (.Param "hideMeta") }}
     <footer class="entry-footer">
-        {{- partial "post_meta.html" . -}}
+        {{- $meta := slice -}}
+        {{- if not .Date.IsZero -}}
+        {{- $meta = $meta | append (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat))) -}}
+        {{- end -}}
+        {{- delimit $meta "&nbsp;·&nbsp;" | safeHTML -}}
     </footer>
     {{- end }}
-    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ $entryURL }}"></a>
 </article>
 {{- end }}
 
@@ -42,7 +52,7 @@
 <footer class="page-footer">
     <nav class="pagination">
         {{- if $paginator.HasPrev }}
-        <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+        <a class="prev" href="{{ $paginator.Prev.URL | relURL }}">
             «&nbsp;{{ i18n "prev_page" }}&nbsp;
             {{- if (.Param "ShowPageNums") }}
             {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
@@ -50,7 +60,7 @@
         </a>
         {{- end }}
         {{- if $paginator.HasNext }}
-        <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+        <a class="next" href="{{ $paginator.Next.URL | relURL }}">
             {{- i18n "next_page" }}&nbsp;
             {{- if (.Param "ShowPageNums") }}
             {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}

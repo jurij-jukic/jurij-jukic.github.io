@@ -42,6 +42,20 @@
     display: none;
 }
 
+.entry-hint[title="Draft"] {
+    display: none;
+}
+
+.post-entry .entry-header h2 {
+    font-size: 1.15rem;
+    line-height: 1.35;
+}
+
+.post-title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+}
+
 @media (max-width: 640px) {
     .home-info-header {
         align-items: flex-start;
