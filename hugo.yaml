@@ -41,7 +41,7 @@ params:
   homeInfoParams:
     Title: "Jurij Jukić"
     Image: "/images/IMG_0203-bw-flipped.jpg"
-    LightImage: "/images/IMG_0203-bw-negative-flipped.jpg"
+    LightImage: "/images/IMG_0203-bw-flipped.jpg"
     ImageOffsetX: "0%"
     ImageOffsetY: "0%"
     ImageScale: "0.9"
