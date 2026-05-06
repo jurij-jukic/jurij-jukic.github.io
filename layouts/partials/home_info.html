@@ -1,8 +1,9 @@
 {{- with site.Params.homeInfoParams }}
 <article class="first-entry home-info">
     <div class="home-info-header">
-        <header class="entry-header">
+        <header class="entry-header home-info-title">
             <h1>{{ .Title | markdownify }}</h1>
+            {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
         </header>
         {{- with .Image }}
         <div class="home-info-image-frame">
@@ -28,8 +29,5 @@
         {{ . }}
     </div>
     {{- end }}
-    <footer class="entry-footer">
-        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
-    </footer>
 </article>
 {{- end -}}

@@ -38,6 +38,17 @@ params:
   mainSections:
     - posts
 
+  social:
+    twitter: "jurij_jukic"
+
+  socialIcons:
+    - name: x
+      title: "Twitter/X"
+      url: "https://x.com/jurij_jukic"
+    - name: github
+      title: "GitHub"
+      url: "https://github.com/jurij-jukic"
+
   homeInfoParams:
     Title: "Jurij Jukić"
     Image: "/images/IMG_0203-bw-flipped.jpg"

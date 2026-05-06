@@ -14,6 +14,20 @@
     max-width: 46rem;
 }
 
+.home-info-title .social-icons {
+    margin-top: 0.35rem;
+}
+
+.home-info-title .social-icons a {
+    color: var(--secondary);
+    opacity: 1;
+}
+
+.home-info-title .social-icons svg {
+    height: 18px;
+    width: 18px;
+}
+
 .home-info-image-frame {
     width: 12rem;
     height: 12rem;
