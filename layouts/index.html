@@ -11,16 +11,22 @@
 {{- end }}
 
 {{- range $page := $paginator.Pages }}
+{{- $entryURL := .RelPermalink -}}
+{{- $hasExternalURL := false -}}
+{{- with .Params.externalURL -}}
+{{- $entryURL = . -}}
+{{- $hasExternalURL = true -}}
+{{- end -}}
 <article class="post-entry">
-    {{- $entryURL := .RelPermalink -}}
-    {{- with .Params.externalURL -}}
-    {{- $entryURL = . -}}
-    {{- end -}}
     {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
     {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
     <header class="entry-header">
         <h2 class="entry-hint-parent">
+            {{- if $hasExternalURL -}}
+            <a href="{{ $entryURL }}">{{- .Title -}}</a>
+            {{- else -}}
             {{- .Title }}
+            {{- end -}}
             {{- if .Draft }}
             <span class="entry-hint" title="Draft">
                 <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -44,7 +50,9 @@
         {{- delimit $meta "&nbsp;·&nbsp;" | safeHTML -}}
     </footer>
     {{- end }}
+    {{- if not $hasExternalURL }}
     <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ $entryURL }}"></a>
+    {{- end }}
 </article>
 {{- end }}
 
