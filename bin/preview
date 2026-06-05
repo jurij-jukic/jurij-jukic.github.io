@@ -29,6 +29,7 @@ fi
 hugo server \
   --buildDrafts \
   --disableFastRender \
+  --renderToMemory \
   --bind 127.0.0.1 \
   --port "$PORT" \
   --baseURL "http://127.0.0.1:$PORT/" \

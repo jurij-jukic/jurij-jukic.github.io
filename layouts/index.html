@@ -48,6 +48,11 @@
         {{- $meta = $meta | append (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat))) -}}
         {{- end -}}
         {{- delimit $meta "&nbsp;·&nbsp;" | safeHTML -}}
+        {{- $zenodoLabel := .Params.zenodoLabel | default "Zenodo" -}}
+        {{- with .Params.zenodoURL -}}
+        {{- if gt (len $meta) 0 }}&nbsp;·&nbsp;{{ end -}}
+        <a class="entry-footer-link" href="{{ . }}">{{ $zenodoLabel }}</a>
+        {{- end -}}
     </footer>
     {{- end }}
     {{- if not $hasExternalURL }}

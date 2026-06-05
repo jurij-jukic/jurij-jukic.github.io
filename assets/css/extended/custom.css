@@ -70,6 +70,41 @@
     text-decoration: none;
 }
 
+.entry-footer a.entry-footer-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+html:not([data-theme="dark"]) .md-content .highlight:not(table),
+html:not([data-theme="dark"]) .md-content .highlight pre,
+html:not([data-theme="dark"]) .md-content .highlight pre code,
+html:not([data-theme="dark"]) .md-content .chroma {
+    background: #f6f7f9 !important;
+}
+
+html:not([data-theme="dark"]) .md-content .highlight pre code,
+html:not([data-theme="dark"]) .md-content .chroma {
+    color: #24292f;
+}
+
+html:not([data-theme="dark"]) .md-content .chroma .nc,
+html:not([data-theme="dark"]) .md-content .chroma .nl {
+    color: #953800;
+}
+
+html:not([data-theme="dark"]) .md-content .chroma .na {
+    color: #0550ae;
+}
+
+html:not([data-theme="dark"]) .md-content .chroma .s {
+    color: #0a3069;
+}
+
+html:not([data-theme="dark"]) .md-content .chroma .p {
+    color: #57606a;
+}
+
 .post-title {
     font-size: 1.6rem;
     line-height: 1.25;

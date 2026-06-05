@@ -4,8 +4,10 @@ title: "Home"
 
 My name is Jurij (pronounced "Yuri").
 
-My aim is to mathematically understand recursive self-improvement. To do that, I first need to understand the way neural networks work. Hence my work on key search as a possible explanatory principle.
+My current goal is to create a static, predictive theory of training. Training seems to be governed by only a few variables (architecture, seed, data) with a lot of invariance across hyperparameters, seeds or datasets. 
 
-Further, how can we understand LLMs if we don't have a mathematical model of language? So I am trying to do a full multi resolution analysis of language, analogously to how we do it for images. Tools probably necessary for that are information geometry, data driven wavelet decomposition, and hypergraphs.
+My suspicion is that the way we currently do training is not computationally irreducible, but rather, given a better mathematical understanding of it, we could literally "skip" the training, predict the solution and jump straight to it. Whether this is possible or not, trying to answer that question will be informative.
 
-I am inspired by logical depth as a key principle behind everything I do.
+We know that for adversarially constructed datasets, finding the optimal weights is NP-hard, but for most datasets, this may not be the case, and in fact, we have no a priori reason to believe that the current architectures are the best fit for the data.
+
+So, why can't we predict the outcome of training?
