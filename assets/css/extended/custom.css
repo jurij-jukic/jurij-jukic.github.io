@@ -18,6 +18,15 @@
     margin-top: 0.35rem;
 }
 
+.home-info.first-entry {
+    min-height: 260px;
+    margin-bottom: 1.5rem;
+}
+
+.home-info .entry-content {
+    margin-top: 2rem;
+}
+
 .home-info-title .social-icons a {
     color: var(--secondary);
     opacity: 1;
